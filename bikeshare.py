@@ -145,7 +145,7 @@ def station_stats(df):
     print('-'*40)
 
 
-def dateStringFromSeconds(seconds):
+def getDate(seconds):
     """Return days, hours , minutes and seconds as a string for a given number of seconds."""
     if seconds > 0:
         days = seconds//86400
@@ -166,11 +166,11 @@ def trip_duration_stats(df):
 
     # display total travel time
     total_travel_time_seconds = df['Trip Duration'].sum()
-    print("Total travel time was: {}".format(dateStringFromSeconds(total_travel_time_seconds)))
+    print("Total travel time was: {}".format(getDate(total_travel_time_seconds)))
     
     # display mean travel time
     mean_travel_time_seconds = df['Trip Duration'].mean()
-    print("Mean travel time was: {}".format(dateStringFromSeconds(mean_travel_time_seconds)))
+    print("Mean travel time was: {}".format(getDate(mean_travel_time_seconds)))
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
