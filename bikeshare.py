@@ -145,13 +145,13 @@ def station_stats(df):
     print('-'*40)
 
 
-def dateStringFromSeconds(secs):
+def getDate(seconds):
     """Return days, hours , minutes and seconds as a string for a given number of seconds."""
-    if secs > 0:
-        days = secs//86400
-        hours = (secs - days*86400)//3600
-        minutes = (secs - days*86400 - hours*3600)//60
-        seconds = secs - days*86400 - hours*3600 - minutes*60
+    if seconds > 0:
+        days = seconds//86400
+        hours = (seconds - days*86400)//3600
+        minutes = (seconds - days*86400 - hours*3600)//60
+        seconds = seconds - days*86400 - hours*3600 - minutes*60
         result = ("{0} day{1}, ".format(int(days), "s" if days!=1 else "") if days else "") + \
         ("{0} hour{1}, ".format(int(hours), "s" if hours!=1 else "") if hours else "") + \
         ("{0} minute{1}, ".format(int(minutes), "s" if minutes!=1 else "") if minutes else "") + \
@@ -166,11 +166,11 @@ def trip_duration_stats(df):
 
     # display total travel time
     total_travel_time_seconds = df['Trip Duration'].sum()
-    print("Total travel time was: {}".format(dateStringFromSeconds(total_travel_time_seconds)))
+    print("Total travel time was: {}".format(getDate(total_travel_time_seconds)))
     
     # display mean travel time
     mean_travel_time_seconds = df['Trip Duration'].mean()
-    print("Mean travel time was: {}".format(dateStringFromSeconds(mean_travel_time_seconds)))
+    print("Mean travel time was: {}".format(getDate(mean_travel_time_seconds)))
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -251,7 +251,7 @@ def main():
         
         display_raw_data(df)
 
-        restart = input('\nWould you like to restart? Enter yes or no.\n')
+        restart = input('\nWould you like to start over? Enter yes or no.\n')
         if restart.lower() != 'yes':
             break
 
